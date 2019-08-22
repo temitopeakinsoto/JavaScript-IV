@@ -87,29 +87,46 @@ Prototype Refactor
 // SOLUTIONS TO TASKS 1 - 4 FROM YESTERDAY 
 
 //****** */TASK 1: **********/
-function Person (name, age) {
-    this.name = name;
-    this.age = age;
-    this.stomach = [];
-  }
+// function Person (name, age) {
+//     this.name = name;
+//     this.age = age;
+//     this.stomach = [];
+//   }
   
-  Person.prototype.greet = function(){
-    return `Hello, my name is ${this.name}, I am ${this.age} years old`;
-  }
-  Person.prototype.eatEdibles = function(food){
-   this.stomach.push(food);
-  }
-  Person.prototype.poop = function(){
-    this.stomach.pop();
-  }
+//   Person.prototype.greet = function(){
+//     return `Hello, my name is ${this.name}, I am ${this.age} years old`;
+//   }
+//   Person.prototype.eatEdibles = function(food){
+//    this.stomach.push(food);
+//   }
+//   Person.prototype.poop = function(){
+//     this.stomach.pop();
+//   }
 
-  
-//   // var Tope = new Person("Temitope", 33);
-//   //  console.log(Tope);
-//   //  Tope.eatEdibles("rice");
-//   //  console.log(Tope.stomach)//["rice"];
-//   //  Tope.poop("rice");
-//   //  console.log(Tope.stomach);//[] empty array
+  //REFACTOR STARTS FROM HERE
+  class Persons{
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
+        this.stomach = [];
+    };
+    greet() {
+        return `Hello, my name is ${this.name}, I am ${this.age} years old`;
+    };
+    eatEdibles(food) {
+        this.stomach.push(food);
+    };
+    poop() {
+        this.stomach.pop();
+    }
+}
+
+var newPerson = new Persons("Shae", 25);
+console.log(newPerson);//Persons {name: "Shae", age: 25, stomach: []}
+newPerson.eatEdibles("Mango");
+console.log(newPerson.stomach);//["Mango"]
+newPerson.poop();
+console.log(newPerson.stomach);//[]
   
 //   //************ */TASK 2 **********/
 //   function Car (model, name, make) {

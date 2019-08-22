@@ -160,6 +160,8 @@ class Student extends Person{
         this.previousBackground = data.previousBackground;
         this.className = data.className;
         this.favSubjects = data.favSubjects;
+        this.grade = 0;
+        this.isReadyToGraduate = false;
     }
 
     listsSubjects() {
@@ -174,6 +176,20 @@ class Student extends Person{
 
     sprintChallenge(subject) {
         console.log(this.name + " has begun sprint challenge on " + subject);
+    }
+
+    setGrade() {
+        return this.grade = Math.floor( (Math.random() * 10) + 1);
+    }
+
+    graduate() {
+     if(this.grade > 70){
+         this.isReadyToGraduate = true;
+        console.log(this.name + " Congratulations, You've completed your program here at LS!");
+     }else{
+       console.log("Sorry, You are not ready to graduate Yet");
+       this.setGrade();
+     } 
     }
 }
 
@@ -210,6 +226,18 @@ const newStu3 = new Student(infoForStudent3);
 console.log(newStu3);
 console.log(newStu2);
 console.log(newStu);
+newStu.setGrade();
+newStu.graduate();
+console.log(newStu.grade);
+newStu2.setGrade();
+console.log(newStu3.grade);//before
+newStu3.graduate();
+console.log(newStu3.grade);//after
+newStu3.setGrade();
+console.log(newStu3.grade);
+console.log(newStu);
+console.log(newStu2);
+
 //newStu.listsSubjects();//prints html, CSS, JavaScript each on a new line
 //newStu2.sprintChallenge("Java");
 //newStu3.PRAssignment("Flutter");

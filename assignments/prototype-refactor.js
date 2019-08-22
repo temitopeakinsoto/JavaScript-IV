@@ -8,7 +8,7 @@ Prototype Refactor
 
 */
 
-/*
+/* PROJECT FROM YESTERDAY TO BE REFACTORED!!!
 
   In order to do these exercises you'll need your newly acquired knowledge on
   constructor functions, methods, prototypes and the `this` keyword.
@@ -84,7 +84,7 @@ Prototype Refactor
 
 
 
-// SOLUTIONS TO TASKS 1 - 4 FROM YESTERDAY 
+// REFACTORED SOLUTIONS TO TASKS 1 - 4 FROM YESTERDAY 
 
 //****** */TASK 1: **********/
 // function Person (name, age) {
@@ -174,19 +174,19 @@ class Persons {
         this.canBeDriven = true;
       }
   }
-  var myCar = new Car("benz-convertible", "c-class", "benz");
-  console.log(myCar);
-  myCar.drive(25);
-  console.log(myCar);
-  myCar.crash();// restores canBeDriven state back to FALSE
-  console.log(myCar.canBeDriven);//FALSE
-  myCar.repair();// restore canBeDriven state back to TRUE
-  console.log(myCar.canBeDriven);//TRUE
+//   var myCar = new Car("benz-convertible", "c-class", "benz");
+//   console.log(myCar);
+//   myCar.drive(25);
+//   console.log(myCar);
+//   myCar.crash();// restores canBeDriven state back to FALSE
+//   console.log(myCar.canBeDriven);//FALSE
+//   myCar.repair();// restore canBeDriven state back to TRUE
+//   console.log(myCar.canBeDriven);//TRUE
 
 
 
 
-//   //********** */TASK 3************/
+  //********** */TASK 3************/
 //   function Baby(name, age, favoriteToy) {
 //     Person.call(this, name, age);
 //     this.favoriteToy = favoriteToy;
@@ -199,9 +199,27 @@ class Persons {
 //     return `I am playing with my ${this.favoriteToy}`;
 //   }
 
-//   //var sonny = new Baby('Tom', 5, 'bicycle');
-//   //console.log(sonny.greet());
-//   //console.log(sonny.play());
+  //var sonny = new Baby('Tom', 5, 'bicycle');
+  //console.log(sonny.greet());
+  //console.log(sonny.play());
+
+  class Baby extends Persons {
+      constructor(name, age, favoriteToy) {
+          super(name, age);
+          this.favoriteToy = favoriteToy;
+      }
+      play() {
+        return `I am playing with my ${this.favoriteToy}`;
+      }
+  }
+
+  var kiddo = new Baby("mary", 3, "babyDoll");
+  console.log(kiddo);//Baby {name: "mary", age: 3, stomach: Array(0), favoriteToy: "babyDoll"}
+  console.log(kiddo.greet());//Hello, my name is mary, I am 3 years old
+  kiddo.eatEdibles("milk");
+  console.log(kiddo.stomach);// outputs ["milk"]
+  kiddo.poop();
+  console.log(kiddo.stomach);//outputs [];
 
 
 //   //*********** */TASK 4***********/

@@ -26,19 +26,26 @@
 // * Person receives `speak` as a method.
 // * This method logs out a phrase `Hello my name is Fred, I am from Bedrock` where `name` and `location` are the object's own props
 
+const pal = {
+    name: "Eben",
+    age: 60,
+    location: "Lagos"
+}
 class Person2 {
-    constructor(name, age, location){
-        this.name = name;
-        this.age = Number(age);
-        this.location = location;
+    constructor(data){
+        this.name = data.name;
+        this.age = Number(data.age);
+        this.location = data.location;
     }
     speak() {
         console.log(`Hello, my name is ${this.name}, I am from ${this.location}`);
     }
 }
 
-var newLambdaStudent = new Person2("James Bond", 32, "Lagos, Nigeria");
-console.log(newLambdaStudent);
+//var newLambdaStudent = new Person2("James Bond", 32, "Lagos, Nigeria");
+//console.log(newLambdaStudent);
+//var lamStudent = new Person2(pal);
+//console.log(lamStudent);
 
 // #### Instructor
 
@@ -52,12 +59,20 @@ console.log(newLambdaStudent);
 //   * `demo` receives a `subject` string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
 //   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
 
+const infoForInstructor = {
+    name: "Eben",
+    age: 60,
+    location: "Lagos",
+    specialty: "React",
+    favLanguage: "Python",
+    catchPhrase: "Eyes on You!!! Muahahahaha!!!"
+}
 class Instructors extends Person2 {
-    constructor(name, age, location, specialty, favLanguage, catchPhrase){
-        super(name, age, location);
-        this.specialty = specialty;
-        this.favLanguage = favLanguage;
-        this.catchPhrase = catchPhrase;
+    constructor(data){
+        super(data);
+        this.specialty = data.specialty;
+        this.favLanguage = data.favLanguage;
+        this.catchPhrase = data.catchPhrase;
 
     }
     demo(subject) {
@@ -69,11 +84,12 @@ class Instructors extends Person2 {
     }
 }
 
-// var newLambdaInstructor = new Instructors ("Gabe", 41, "New York", "Redux", "JavaScritpt", "Yes!!!!!");
-// console.log(newLambdaInstructor);
-// newLambdaInstructor.demo("Advanced Css");//Prints Out: 'Today, were are learning about Advanced Css'
-// newLambdaInstructor.grade({name: "Temitope Akinsoto"}, "Advanced Css");//Print out: 'Temitope Akinsoto receives a perfect score on Advanced Css'
-// newLambdaInstructor.speak();//Prints out: 'Hello, my name is Gabe, I am from New York'
+const newInstructor = new Instructors(infoForInstructor);
+console.log(newInstructor);
+//newInstructor.demo("Advanced Css");//Today, were are learning about Advanced Css
+//newInstructor.grade(pal, "Advanced Css");//Eben receives a perfect score on Advanced Css
+//newInstructor.speak();//Hello, my name is Eben, I am from Lagos
+
 
 // #### Student
 
@@ -89,11 +105,11 @@ class Instructors extends Person2 {
 //   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
 class Student extends Person2{
-    constructor(name, age, location, previousBackground, className, favSubjects) {
-        super(name, age, location);
-        this.previousBackground = previousBackground;
-        this.className = className;
-        this.favSubjects = favSubjects;
+    constructor(data) {
+        super(data);
+        this.previousBackground = data.previousBackground;
+        this.className = data.className;
+        this.favSubjects = data.favSubjects;
     }
     listsSubjects() {
         this.favSubjects.forEach(function(individualSubject){
@@ -108,11 +124,22 @@ class Student extends Person2{
     }
 }
 
-//const lambdaStudent = new Student("shade", 20, "Nigeria", "Fashion", "webEU3", ["HTML", "CSS", "JAVASCRIPT"]);
-//console.log(lambdaStudent);//Student {name: "shade", age: 20, location: "Nigeria", previousBackground: "Fashion", className: "webEU3", …}
-//lambdaStudent.listsSubjects();//prints HTML CSS JAVASCRIPT
-//lambdaStudent.PRAssignment("semantic html");//prints: shade has submitted a PR for semantic html
-//lambdaStudent.sprintChallenge("less CSS");
+const palForStudent = {
+    name: "Ayomide",
+    age: 30,
+    location: "Lagos",
+    previousBackground: "Marketing",
+    className: "WEBEU3",
+    favSubjects: ['Html', 'CSS', 'JavaScript']
+}
+
+//const newStu = new Student(palForStudent);
+//console.log(newStu);
+//newStu.listsSubjects();//prints html, CSS, JavaScript each on a new line
+//newStu.PRAssignment("react-redux");//Ayomide has submitted a PR for react-redux
+//newStu.sprintChallenge("advanced javascript");//Ayomide has begun sprint challenge on advanced javascript
+
+
 
 // #### Project Manager
 
@@ -126,10 +153,10 @@ class Student extends Person2{
 //   * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
 
 class ProjectManagers extends Instructors {
-    constructor(name, age, location, specialty, favLanguage, catchPhrase, gradClassName, favInstructor) {
-        super(name, age, location, specialty, favLanguage, catchPhrase);
-        this.gradClassName = gradClassName;
-        this.favInstructor = favInstructor;
+    constructor(data) {
+        super(data);
+        this.gradClassName = data.gradClassName;
+        this.favInstructor = data.favInstructor;
     }
     standUp(slackChannel) {
         console.log(this.name + " announces to " + slackChannel + " @channel, it's STAND UP TIME!!!");
@@ -139,8 +166,18 @@ class ProjectManagers extends Instructors {
     }
 
 }
+const infoForProjectManagers = {
+    name: "Emily",
+    age: 28,
+    location: "Lagos",
+    specialty: "React",
+    favLanguage: "Python",
+    catchPhrase: "Eyes on You!!! Muahahahaha!!!",
+    gradClassName: "Web EU3 Cohort",
+    favInstructor: "Gabriel"
+}
 
-const myPM = new ProjectManagers("Martin Mensah", "33", "Accra Ghana", "Flutter", "Javascript", "charlie!", "webEU2", "GABE");
-console.log(myPM);
-myPM.debugsCode({name: "Temitope Samson"}, "html5");//prints out: Martin Mensah debugs Temitope Samson's code on html5
-myPM.standUp("webEU3_Help channel");//prints out: Martin Mensah announces to webEU3_Help channel @channel, it's STAND UP TIME!!!
+//const myPM = new ProjectManagers(infoForProjectManagers);
+//console.log(myPM);//prints ProjectManagers {name: "Emily", age: 28, location: "Lagos", specialty: "React", favLanguage: "Python", …}
+//myPM.standUp("webEU3_Help channel");//prints Emily announces to webEU3_Help channel @channel, it's STAND UP TIME!!!
+//myPM.debugsCode(pal, "Html 5");//prints Emily debugs Eben's code on Html 5

@@ -26,26 +26,47 @@
 // * Person receives `speak` as a method.
 // * This method logs out a phrase `Hello my name is Fred, I am from Bedrock` where `name` and `location` are the object's own props
 
-const pal = {
-    name: "Eben",
-    age: 60,
-    location: "Lagos"
-}
-class Person2 {
+
+class Person {
     constructor(data){
         this.name = data.name;
         this.age = Number(data.age);
         this.location = data.location;
     }
+
     speak() {
         console.log(`Hello, my name is ${this.name}, I am from ${this.location}`);
     }
 }
 
-//var newLambdaStudent = new Person2("James Bond", 32, "Lagos, Nigeria");
-//console.log(newLambdaStudent);
-//var lamStudent = new Person2(pal);
-//console.log(lamStudent);
+const pal = {
+    name: "Oluwafemi Anjorin",
+    age: 29,
+    location: "Lagos"
+}
+
+const pal2 = {
+    name: "Justin Irabor",
+    age: 30,
+    location: "Lagos"
+}
+
+const pal3 = {
+    name: "Alison Ludick",
+    age: 28,
+    location: "South Africa"
+}
+
+const lamStudent = new Person(pal);
+const lamStudent2 = new Person(pal2);
+const lamStudent3 = new Person(pal3);
+console.log(lamStudent);
+console.log(lamStudent2);
+console.log(lamStudent3);
+lamStudent.speak();
+lamStudent2.speak();
+lamStudent3.speak();
+
 
 // #### Instructor
 
@@ -59,15 +80,8 @@ class Person2 {
 //   * `demo` receives a `subject` string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
 //   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
 
-const infoForInstructor = {
-    name: "Eben",
-    age: 60,
-    location: "Lagos",
-    specialty: "React",
-    favLanguage: "Python",
-    catchPhrase: "Eyes on You!!! Muahahahaha!!!"
-}
-class Instructors extends Person2 {
+
+class Instructors extends Person {
     constructor(data){
         super(data);
         this.specialty = data.specialty;
@@ -75,17 +89,53 @@ class Instructors extends Person2 {
         this.catchPhrase = data.catchPhrase;
 
     }
+
     demo(subject) {
-        console.log("Today, were are learning about " + subject);
+        console.log("Today, we are learning about " + subject);
     }
+
     grade(student, subject) {
         console.log(student.name + " receives a perfect score on " + subject);
 
     }
 }
 
+const infoForInstructor = {
+    name: "Eben Martins",
+    age: 30,
+    location: "Australia",
+    specialty: "Mongo DB",
+    favLanguage: "Python",
+    catchPhrase: "Eyes on You!!! Muahahahaha!!!"
+}
+
+const infoForInstructor2 = {
+    name: "Gabriel Cabrejas",
+    age: 34,
+    location: "Brooklyn NY",
+    specialty: "Databases",
+    favLanguage: "Golang",
+    catchPhrase: "Just trust the process.."
+}
+
+const infoForInstructor3 = {
+    name: "Ryan Ramblin",
+    age: 40,
+    location: "Lagos",
+    specialty: "React",
+    favLanguage: "Python",
+    catchPhrase: "Pass me the Mic"
+}
+
 const newInstructor = new Instructors(infoForInstructor);
+const newInstructor2 = new Instructors(infoForInstructor2);
+const newInstructor3 = new Instructors(infoForInstructor3);
 console.log(newInstructor);
+console.log(newInstructor2);
+console.log(newInstructor3);
+newInstructor.speak();
+newInstructor2.demo("Advanced Css");
+newInstructor3.grade(pal, "Advanced Css");
 //newInstructor.demo("Advanced Css");//Today, were are learning about Advanced Css
 //newInstructor.grade(pal, "Advanced Css");//Eben receives a perfect score on Advanced Css
 //newInstructor.speak();//Hello, my name is Eben, I am from Lagos
@@ -104,27 +154,30 @@ console.log(newInstructor);
 //   * `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
 //   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
-class Student extends Person2{
+class Student extends Person{
     constructor(data) {
         super(data);
         this.previousBackground = data.previousBackground;
         this.className = data.className;
         this.favSubjects = data.favSubjects;
     }
+
     listsSubjects() {
         this.favSubjects.forEach(function(individualSubject){
             console.log(individualSubject);
         });
     }
+
     PRAssignment(subject) {
         console.log(this.name + " has submitted a PR for " + subject);
     }
+
     sprintChallenge(subject) {
         console.log(this.name + " has begun sprint challenge on " + subject);
     }
 }
 
-const palForStudent = {
+const infoForStudent = {
     name: "Ayomide",
     age: 30,
     location: "Lagos",
@@ -133,9 +186,33 @@ const palForStudent = {
     favSubjects: ['Html', 'CSS', 'JavaScript']
 }
 
-//const newStu = new Student(palForStudent);
-//console.log(newStu);
+const infoForStudent2 = {
+    name: "Walela Austin",
+    age: 28,
+    location: "Nairobi",
+    previousBackground: "Logistics",
+    className: "LS02",
+    favSubjects: ['UX', 'iOS', 'Java']
+}
+
+const infoForStudent3 = {
+    name: "Samuel Ifiok",
+    age: 31,
+    location: "Johannesburg",
+    previousBackground: "Sales",
+    className: "WEB24",
+    favSubjects: ['Python', 'Java', 'Flutter']
+}
+
+const newStu = new Student(infoForStudent);
+const newStu2 = new Student(infoForStudent2);
+const newStu3 = new Student(infoForStudent3);
+console.log(newStu3);
+console.log(newStu2);
+console.log(newStu);
 //newStu.listsSubjects();//prints html, CSS, JavaScript each on a new line
+//newStu2.sprintChallenge("Java");
+//newStu3.PRAssignment("Flutter");
 //newStu.PRAssignment("react-redux");//Ayomide has submitted a PR for react-redux
 //newStu.sprintChallenge("advanced javascript");//Ayomide has begun sprint challenge on advanced javascript
 
@@ -166,7 +243,8 @@ class ProjectManagers extends Instructors {
     }
 
 }
-const infoForProjectManagers = {
+
+const infoForProjectManager1 = {
     name: "Emily",
     age: 28,
     location: "Lagos",
@@ -176,8 +254,32 @@ const infoForProjectManagers = {
     gradClassName: "Web EU3 Cohort",
     favInstructor: "Gabriel"
 }
+const infoForProjectManager2 = {
+    name: "Sanders",
+    age: 34,
+    location: "Germany",
+    specialty: "iOS",
+    favLanguage: "Objective C",
+    catchPhrase: "Catch me if You Can!!!",
+    gradClassName: "Web EU3 Cohort",
+    favInstructor: "Ryan"
+}
+const infoForProjectManager3 = {
+    name: "Stanly",
+    age: 43,
+    location: "Utah, USA",
+    specialty: "React Native",
+    favLanguage: "JavaScript",
+    catchPhrase: "Let's do this!!!",
+    gradClassName: "Web EU3 Cohort",
+    favInstructor: "Bradley Singerr"
+}
 
-//const myPM = new ProjectManagers(infoForProjectManagers);
-//console.log(myPM);//prints ProjectManagers {name: "Emily", age: 28, location: "Lagos", specialty: "React", favLanguage: "Python", …}
-//myPM.standUp("webEU3_Help channel");//prints Emily announces to webEU3_Help channel @channel, it's STAND UP TIME!!!
-//myPM.debugsCode(pal, "Html 5");//prints Emily debugs Eben's code on Html 5
+const myPM = new ProjectManagers(infoForProjectManager1);
+const myPM2 = new ProjectManagers(infoForProjectManager2);
+const myPM3 = new ProjectManagers(infoForProjectManager3);
+console.log(myPM3);
+console.log(myPM2);
+console.log(myPM);//prints ProjectManagers {name: "Emily", age: 28, location: "Lagos", specialty: "React", favLanguage: "Python", …}
+myPM.standUp("webEU3_Help channel");//prints Emily announces to webEU3_Help channel @channel, it's STAND UP TIME!!!
+myPM2.debugsCode(pal, "Html 5");//prints Sanders debugs Oluwafemi Anjorin's code on Html 5

@@ -128,7 +128,7 @@ class Persons {
 // newPerson.poop();
 // console.log(newPerson.stomach);//[]
 
-  //************ */TASK 2 **********/
+//************ */TASK 2 **********/
 //   function Car (model, name, make) {
 //     this.carModel = model;
 //     this.carName = name;
@@ -151,29 +151,29 @@ class Persons {
 //   }
 
 
-  //TASK 2 REFACTORING STARTS FROM HERE
+//TASK 2 REFACTORING STARTS FROM HERE
 
-  class Car {
-      constructor(model, name, make) {
+class Car {
+    constructor(model, name, make) {
         this.carModel = model;
         this.carName = name;
         this.carMake = make;
         this.odometer = 0;
         this.canBeDriven = true;
-      }
-      drive(distanceDriven){
-        if(this.canBeDriven === true) this.odometer += Number(distanceDriven);
-      }
-      crash() {
+    }
+    drive(distanceDriven) {
+        if (this.canBeDriven === true) this.odometer += Number(distanceDriven);
+    }
+    crash() {
         // Make car undrive-able, as it it's just been crahsed!
         this.canBeDriven = false;
         console.log(`I crahsed ${this.odometer} miles!`);
-      }
-      repair() {
+    }
+    repair() {
         //restore car'r drivability.
         this.canBeDriven = true;
-      }
-  }
+    }
+}
 //   var myCar = new Car("benz-convertible", "c-class", "benz");
 //   console.log(myCar);
 //   myCar.drive(25);
@@ -186,7 +186,7 @@ class Persons {
 
 
 
-  //********** */TASK 3************/
+//********** */TASK 3************/
 //   function Baby(name, age, favoriteToy) {
 //     Person.call(this, name, age);
 //     this.favoriteToy = favoriteToy;
@@ -199,27 +199,29 @@ class Persons {
 //     return `I am playing with my ${this.favoriteToy}`;
 //   }
 
-  //var sonny = new Baby('Tom', 5, 'bicycle');
-  //console.log(sonny.greet());
-  //console.log(sonny.play());
+//var sonny = new Baby('Tom', 5, 'bicycle');
+//console.log(sonny.greet());
+//console.log(sonny.play());
 
-  class Baby extends Persons {
-      constructor(name, age, favoriteToy) {
-          super(name, age);
-          this.favoriteToy = favoriteToy;
-      }
-      play() {
+//TASK 3 REFACTORING STARTS FROM HERE
+
+class Baby extends Persons {
+    constructor(name, age, favoriteToy) {
+        super(name, age);
+        this.favoriteToy = favoriteToy;
+    }
+    play() {
         return `I am playing with my ${this.favoriteToy}`;
-      }
-  }
+    }
+}
 
-  var kiddo = new Baby("mary", 3, "babyDoll");
-  console.log(kiddo);//Baby {name: "mary", age: 3, stomach: Array(0), favoriteToy: "babyDoll"}
-  console.log(kiddo.greet());//Hello, my name is mary, I am 3 years old
-  kiddo.eatEdibles("milk");
-  console.log(kiddo.stomach);// outputs ["milk"]
-  kiddo.poop();
-  console.log(kiddo.stomach);//outputs [];
+//   var kiddo = new Baby("mary", 3, "babyDoll");
+//   console.log(kiddo);//Baby {name: "mary", age: 3, stomach: Array(0), favoriteToy: "babyDoll"}
+//   console.log(kiddo.greet());//Hello, my name is mary, I am 3 years old
+//   kiddo.eatEdibles("milk");
+//   console.log(kiddo.stomach);// outputs ["milk"]
+//   kiddo.poop();
+//   console.log(kiddo.stomach);//outputs [];
 
 
 //   //*********** */TASK 4***********/
@@ -228,7 +230,7 @@ class Persons {
 //     this.name = fruitName;
 //     this.type = fruitType;
 //     this.rating = Number(fruitRating);
-//     isTasty = false;
+//     this.isTasty = false;
 //   }
 
 //   Fruit.prototype.eatFruit = function(){
@@ -281,6 +283,82 @@ class Persons {
 
 
 //   /*
+  //first constructor function REFACTOR
+
+  class Fruit {
+      constructor(fruitName, fruitType, fruitRating){
+        this.name = fruitName;
+        this.type = fruitType;
+        this.rating = Number(fruitRating);
+        this.isTasty = false;
+      }
+      eatFruit() {
+        return `${this.name} is very TASTY!`;
+      }
+  }
+  //var newFruit = new Fruit("banana", "berry", 30);
+  //console.log(newFruit);
+  //console.log(newFruit.eatFruit());
+
+
+  class Students {
+      constructor (nameOfStudent, ageOfStudent, scoreOfStudent){
+        this.studentName = nameOfStudent;
+        this.studentAge = Number(ageOfStudent);
+        this.studentScore = scoreOfStudent;
+        this.isPromoted = false;
+      }
+      writeExam() {
+        if(this.studentScore > 70){
+            this.isPromoted = true;
+            return `Congratulations ${this.studentName}, You passed your exam`;
+          } 
+      }
+  }
+
+  //var newStudent = new Students("tunde", 30, 79);
+  //console.log(newStudent);//{studentName: "tunde", studentAge: 30, studentScore: 79, isPromoted: false}
+  //console.log(newStudent.writeExam());//prints out "Congratulations tunde, You passed your exam" also sets this.isPromoted to TRUE
+  //console.log(newStudent);//Students {studentName: "tunde", studentAge: 30, studentScore: 79, isPromoted: true}
+
+//   third constructor function
+//   function Employee(name, educationStatus, workExperience){
+//     this.employeeName = name;
+//     this.employeeEducationStatus = educationStatus;
+//     this.employeeWorkExperience = workExperience;  
+//     this.isExperienced = false;
+//   }
+
+//   Employee.prototype.getLevelOfExperien = function() {
+//     if(this.employeeWorkExperience > 0){
+//       this.isExperienced = true;
+//       return (`You have ${this.employeeWorkExperience}yr work  experience`);
+//     }
+//     return isExperienced = false;
+//   }
+
+  class Employee {
+      constructor(name, educationStatus, workExperience){
+        this.employeeName = name;
+        this.employeeEducationStatus = educationStatus;
+        this.employeeWorkExperience = workExperience;  
+        this.isExperienced = false;
+      }
+      getLevelOfExperien() {
+        if(this.employeeWorkExperience > 0){
+            this.isExperienced = true;
+            return (`You have ${this.employeeWorkExperience}yr work  experience`);
+          }
+          console.log(`Sorry, You have ${this.employeeWorkExperience}yr work  experience`);
+      }
+  }
+  const intern = new Employee("newGuy", "b.sc", 1);
+  console.log(intern);
+  const intern2 = new Employee("freshGrad", "b.sc", 0);
+  console.log(intern2);
+  console.log(intern.getLevelOfExperien());// prints out 'You have 1yr work  experience'
+  console.log(intern2.getLevelOfExperien());//prints out 'Sorry, You have 1yr work  experience'
+
 
 //     STRETCH TASK
 

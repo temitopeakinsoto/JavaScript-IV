@@ -92,7 +92,7 @@ Prototype Refactor
 //     this.age = age;
 //     this.stomach = [];
 //   }
-  
+
 //   Person.prototype.greet = function(){
 //     return `Hello, my name is ${this.name}, I am ${this.age} years old`;
 //   }
@@ -103,9 +103,9 @@ Prototype Refactor
 //     this.stomach.pop();
 //   }
 
-  //REFACTOR STARTS FROM HERE
-  class Persons{
-    constructor(name, age){
+// TASK 1 REFACTORING STARTS FROM HERE
+class Persons {
+    constructor(name, age) {
         this.name = name;
         this.age = age;
         this.stomach = [];
@@ -121,14 +121,14 @@ Prototype Refactor
     }
 }
 
-var newPerson = new Persons("Shae", 25);
-console.log(newPerson);//Persons {name: "Shae", age: 25, stomach: []}
-newPerson.eatEdibles("Mango");
-console.log(newPerson.stomach);//["Mango"]
-newPerson.poop();
-console.log(newPerson.stomach);//[]
-  
-//   //************ */TASK 2 **********/
+// var newPerson = new Persons("Shae", 25);
+// console.log(newPerson);//Persons {name: "Shae", age: 25, stomach: []}
+// newPerson.eatEdibles("Mango");
+// console.log(newPerson.stomach);//["Mango"]
+// newPerson.poop();
+// console.log(newPerson.stomach);//[]
+
+  //************ */TASK 2 **********/
 //   function Car (model, name, make) {
 //     this.carModel = model;
 //     this.carName = name;
@@ -136,7 +136,7 @@ console.log(newPerson.stomach);//[]
 //     this.odometer = 0;
 //     this.canBeDriven = true;
 //   }
-  
+
 //   Car.prototype.drive = function(distanceDriven){
 //     if(this.canBeDriven === true) this.odometer += Number(distanceDriven);
 //   }
@@ -149,34 +149,61 @@ console.log(newPerson.stomach);//[]
 //     //restore car'r drivability.
 //     this.canBeDriven = true;
 //   }
-  
-//   //var firstCar = new Car("CAMRY", "MUSCLE", "TOYOTA");
-//   //firstCar.drive(29);
-//   //console.log(firstCar.odometer);
-//   //firstCar.crash();//sets canBeDriven = false
-//   //console.log(firstCar.crash());
-//   //console.log(firstCar);
-//   //console.log(firstCar.repair());
-  
-  
+
+
+  //TASK 2 REFACTORING STARTS FROM HERE
+
+  class Car {
+      constructor(model, name, make) {
+        this.carModel = model;
+        this.carName = name;
+        this.carMake = make;
+        this.odometer = 0;
+        this.canBeDriven = true;
+      }
+      drive(distanceDriven){
+        if(this.canBeDriven === true) this.odometer += Number(distanceDriven);
+      }
+      crash() {
+        // Make car undrive-able, as it it's just been crahsed!
+        this.canBeDriven = false;
+        console.log(`I crahsed ${this.odometer} miles!`);
+      }
+      repair() {
+        //restore car'r drivability.
+        this.canBeDriven = true;
+      }
+  }
+  var myCar = new Car("benz-convertible", "c-class", "benz");
+  console.log(myCar);
+  myCar.drive(25);
+  console.log(myCar);
+  myCar.crash();// restores canBeDriven state back to FALSE
+  console.log(myCar.canBeDriven);//FALSE
+  myCar.repair();// restore canBeDriven state back to TRUE
+  console.log(myCar.canBeDriven);//TRUE
+
+
+
+
 //   //********** */TASK 3************/
 //   function Baby(name, age, favoriteToy) {
 //     Person.call(this, name, age);
 //     this.favoriteToy = favoriteToy;
 //   }
-  
+
 //   Baby.prototype = Object.create(Person.prototype);
-  
+
 //   // add ability for baby's to play
 //   Baby.prototype.play = function () {
 //     return `I am playing with my ${this.favoriteToy}`;
 //   }
-  
+
 //   //var sonny = new Baby('Tom', 5, 'bicycle');
 //   //console.log(sonny.greet());
 //   //console.log(sonny.play());
-  
-  
+
+
 //   //*********** */TASK 4***********/
 //   //first constructor function
 //   function Fruit (fruitName, fruitType, fruitRating) {
@@ -185,15 +212,15 @@ console.log(newPerson.stomach);//[]
 //     this.rating = Number(fruitRating);
 //     isTasty = false;
 //   }
-  
+
 //   Fruit.prototype.eatFruit = function(){
 //     return `${this.name} is very TASTY!`;
 //   }
 //   //var newFruit = new Fruit("banana", "berry", 30);
 //   //console.log(newFruit.eatFruit());
-  
-  
-  
+
+
+
 //   //second constructor function
 //   function Students (nameOfStudent, ageOfStudent, scoreOfStudent) {
 //     this.studentName = nameOfStudent;
@@ -201,19 +228,19 @@ console.log(newPerson.stomach);//[]
 //     this.studentScore = scoreOfStudent;
 //     this.isPromoted = false;
 //   }
-  
+
 //   Students.prototype.writeExam = function(){
 //     if(this.studentScore > 70){
 //       this.isPromoted = true;
 //       return `Congratulations ${this.studentName}, You passed your exam`;
 //     } 
 //   }
-  
+
 //   var student1 = new Students("Samuel", 22, 75);
 //   //console.log(student1.writeExam());
 //   //console.log(student1.isPromoted);
-  
-  
+
+
 //   //third constructor function
 //   function Employee(name, educationStatus, workExperience){
 //     this.employeeName = name;
@@ -221,7 +248,7 @@ console.log(newPerson.stomach);//[]
 //     this.employeeWorkExperience = workExperience;  
 //     this.isExperienced = false;
 //   }
-  
+
 //   Employee.prototype.getLevelOfExperien = function() {
 //     if(this.employeeWorkExperience > 0){
 //       this.isExperienced = true;
@@ -232,21 +259,21 @@ console.log(newPerson.stomach);//[]
 //   const intern = new Employee("newGuy", "b.sc", 1);
 //   //console.log(intern);
 //   console.log(intern.getLevelOfExperien());
-  
-  
-  
+
+
+
 //   /*
-  
+
 //     STRETCH TASK
-  
+
 //     Object oriented design is commonly used in video games. You will be implementing several constructor functions with their correct inheritance hierarchy.
 //     In this file you will be creating three constructor functions: GameObject, CharacterStats, Humanoid.
 //     At the bottom of this file are 3 objects that all end up inheriting from Humanoid.  Use the objects at the bottom of the page to test your constructor functions.
-  
+
 //     Each constructor function has unique properties and methods that are defined in their block comments below:
 //   */
-  
-  
+
+
 //   /*
 //     === GameObject ===
 //     * createdAt
@@ -254,17 +281,17 @@ console.log(newPerson.stomach);//[]
 //     * dimensions (These represent the character's size in the video game)
 //     * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 //   */
-  
+
 //   function GameObject(createdAt, name, dimensions) {
 //     this.createdAt = createdAt;
 //     this.name = name;
 //     this.dimensions = dimensions;
 //   }
-    
+
 //   GameObject.prototype.destroy = function() {
 //     return `${this.name} was removed from the game.`;
 //   }
-  
+
 //   /*
 //     === CharacterStats ===
 //     * healthPoints
@@ -276,11 +303,11 @@ console.log(newPerson.stomach);//[]
 //     this.healthPoints = healthPoints; 
 //     console.log(this);
 //   }
-    
+
 //   CharacterStats.prototype.takeDamage = function() {
 //     return `${this.name} took damage.`;
 //   }
-  
+
 //   var some = CharacterStats(20);
 //   some.takeDamage();
 //   /*
@@ -298,19 +325,19 @@ console.log(newPerson.stomach);//[]
 //     this.language = language;
 //     CharacterStats.call()
 //   }
-    
+
 //   Humanoid.prototype.greet = function() {
 //     return `${this.name} offers a greeting in ${this.language}`;
 //   }
-  
+
 //   /*
 //     * Inheritance chain: GameObject -> CharacterStats -> Humanoid
 //     * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
 //     * Instances of CharacterStats should have all of the same properties as GameObject.
 //   */
-  
+
 //   // Test you work by un-commenting these 3 objects and the list of console logs below:
-  
+
 //   /*
 //     const mage = new Humanoid({
 //       createdAt: new Date(),
@@ -370,5 +397,5 @@ console.log(newPerson.stomach);//[]
 //     console.log(mage.takeDamage()); // Bruce took damage.
 //     console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 //   */
-  
-  
+
+

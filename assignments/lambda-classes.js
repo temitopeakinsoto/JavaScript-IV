@@ -52,7 +52,7 @@ console.log(newLambdaStudent);
 //   * `demo` receives a `subject` string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
 //   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
 
-class Instructor extends Person2 {
+class Instructors extends Person2 {
     constructor(name, age, location, specialty, favLanguage, catchPhrase){
         super(name, age, location);
         this.specialty = specialty;
@@ -69,7 +69,7 @@ class Instructor extends Person2 {
     }
 }
 
-var newLambdaInstructor = new Instructor ("Gabe", 41, "New York", "Redux", "JavaScritpt", "Yes!!!!!");
+var newLambdaInstructor = new Instructors ("Gabe", 41, "New York", "Redux", "JavaScritpt", "Yes!!!!!");
 console.log(newLambdaInstructor);
 newLambdaInstructor.demo("Advanced Css");//Prints Out: 'Today, were are learning about Advanced Css'
 newLambdaInstructor.grade({name: "Temitope Akinsoto"}, "Advanced Css");//Print out: 'Temitope Akinsoto receives a perfect score on Advanced Css'
@@ -88,6 +88,26 @@ newLambdaInstructor.speak();//Prints out: 'Hello, my name is Gabe, I am from New
 //   * `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
 //   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
+class Student extends Person2{
+    constructor(name, age, location, previousBackground, className, favSubjects) {
+        super(name, age, location);
+        this.previousBackground = previousBackground;
+        this.className = className;
+        this.favSubjects = favSubjects;
+    }
+    listsSubjects() {
+        this.favSubjects.forEach(function(individualSubject){
+            console.log(individualSubject);
+        });
+    }
+    PRAssignment(subject) {
+        console.log(this.name + " has submitted a PR for " + subject);
+    }
+    sprintChallenge(subject) {
+        console.log(this.name + " has begun sprint challenge on " + subject);
+    }
+}
+
 // #### Project Manager
 
 // * Now that we have instructors and students, we'd be nowhere without our PM's
@@ -98,3 +118,18 @@ newLambdaInstructor.speak();//Prints out: 'Hello, my name is Gabe, I am from New
 // * ProjectManagers have the following Methods:
 //   * `standUp` a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
 //   * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
+
+class ProjectManagers extends Instructors {
+    constructor(name, age, location, specialty, favLanguage, catchPhrase, gradClassName, favInstructor) {
+        super(name, age, location, specialty, favLanguage, catchPhrase);
+        this.gradClassName = gradClassName;
+        this.favInstructor = favInstructor;
+    }
+    standUp(slackChannel) {
+        console.log(this.name + "announces to " + slackChannel + " @channel, it's STAND UP TIME");
+    }
+    debugsCode(studentObject, subject) {
+        console.log($this.name + " debugs " + studentObject.name + "'s code on " + subject);
+    }
+
+}

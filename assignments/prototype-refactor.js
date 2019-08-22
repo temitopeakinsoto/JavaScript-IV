@@ -352,12 +352,12 @@ class Baby extends Persons {
           console.log(`Sorry, You have ${this.employeeWorkExperience}yr work  experience`);
       }
   }
-  const intern = new Employee("newGuy", "b.sc", 1);
-  console.log(intern);
-  const intern2 = new Employee("freshGrad", "b.sc", 0);
-  console.log(intern2);
-  console.log(intern.getLevelOfExperien());// prints out 'You have 1yr work  experience'
-  console.log(intern2.getLevelOfExperien());//prints out 'Sorry, You have 1yr work  experience'
+  //const intern = new Employee("newGuy", "b.sc", 1);
+  //console.log(intern);
+  //const intern2 = new Employee("freshGrad", "b.sc", 0);
+  //console.log(intern2);
+  //console.log(intern.getLevelOfExperien());// prints out 'You have 1yr work  experience'
+  //console.log(intern2.getLevelOfExperien());//prints out 'Sorry, You have 1yr work  experience'
 
 
 //     STRETCH TASK

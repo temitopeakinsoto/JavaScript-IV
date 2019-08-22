@@ -69,11 +69,11 @@ class Instructors extends Person2 {
     }
 }
 
-var newLambdaInstructor = new Instructors ("Gabe", 41, "New York", "Redux", "JavaScritpt", "Yes!!!!!");
-console.log(newLambdaInstructor);
-newLambdaInstructor.demo("Advanced Css");//Prints Out: 'Today, were are learning about Advanced Css'
-newLambdaInstructor.grade({name: "Temitope Akinsoto"}, "Advanced Css");//Print out: 'Temitope Akinsoto receives a perfect score on Advanced Css'
-newLambdaInstructor.speak();//Prints out: 'Hello, my name is Gabe, I am from New York'
+// var newLambdaInstructor = new Instructors ("Gabe", 41, "New York", "Redux", "JavaScritpt", "Yes!!!!!");
+// console.log(newLambdaInstructor);
+// newLambdaInstructor.demo("Advanced Css");//Prints Out: 'Today, were are learning about Advanced Css'
+// newLambdaInstructor.grade({name: "Temitope Akinsoto"}, "Advanced Css");//Print out: 'Temitope Akinsoto receives a perfect score on Advanced Css'
+// newLambdaInstructor.speak();//Prints out: 'Hello, my name is Gabe, I am from New York'
 
 // #### Student
 
@@ -108,6 +108,12 @@ class Student extends Person2{
     }
 }
 
+//const lambdaStudent = new Student("shade", 20, "Nigeria", "Fashion", "webEU3", ["HTML", "CSS", "JAVASCRIPT"]);
+//console.log(lambdaStudent);//Student {name: "shade", age: 20, location: "Nigeria", previousBackground: "Fashion", className: "webEU3", …}
+//lambdaStudent.listsSubjects();//prints HTML CSS JAVASCRIPT
+//lambdaStudent.PRAssignment("semantic html");//prints: shade has submitted a PR for semantic html
+//lambdaStudent.sprintChallenge("less CSS");
+
 // #### Project Manager
 
 // * Now that we have instructors and students, we'd be nowhere without our PM's
@@ -126,10 +132,15 @@ class ProjectManagers extends Instructors {
         this.favInstructor = favInstructor;
     }
     standUp(slackChannel) {
-        console.log(this.name + "announces to " + slackChannel + " @channel, it's STAND UP TIME");
+        console.log(this.name + " announces to " + slackChannel + " @channel, it's STAND UP TIME!!!");
     }
     debugsCode(studentObject, subject) {
-        console.log($this.name + " debugs " + studentObject.name + "'s code on " + subject);
+        console.log(this.name + " debugs " + studentObject.name + "'s code on " + subject);
     }
 
 }
+
+const myPM = new ProjectManagers("Martin Mensah", "33", "Accra Ghana", "Flutter", "Javascript", "charlie!", "webEU2", "GABE");
+console.log(myPM);
+myPM.debugsCode({name: "Temitope Samson"}, "html5");//prints out: Martin Mensah debugs Temitope Samson's code on html5
+myPM.standUp("webEU3_Help channel");//prints out: Martin Mensah announces to webEU3_Help channel @channel, it's STAND UP TIME!!!

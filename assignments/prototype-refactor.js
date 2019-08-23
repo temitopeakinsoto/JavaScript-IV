@@ -8,100 +8,6 @@ Prototype Refactor
 
 */
 
-/* PROJECT FROM YESTERDAY TO BE REFACTORED!!!
-
-  In order to do these exercises you'll need your newly acquired knowledge on
-  constructor functions, methods, prototypes and the `this` keyword.
-  Here's an example of an exercise:
-
-  TASK 0:
-
-  - Build an Airplane constructor that takes a name.
-  - Give airplanes the ability to take off and land.
-  - If a plane takes off, its "isFlying" property is true.
-  - If a plane lands, its "isFlying" property is false.
-
-  SOLUTION CODE:
-
-  function Airplane(name) {
-    this.name = name;
-    this.isFlying = false;
-  }
-  Airplane.prototype.takeOff = function () {
-    this.isFlying = true;
-  }
-  Airplane.prototype.land = function () {
-    this.isFlying = false;
-  }
-
-  HOW TO TEST OUR SOLUTION:
-
-  const jumbo = new Airplane('Jumbo');
-  console.log(jumbo.name)              // 'Jumbo'
-  console.log(jumbo.isFlying)          // false
-  jumbo.takeOff();
-  console.log(jumbo.isFlying)          // true
-  jumbo.land();
-  console.log(jumbo.isFlying)          // false
-*/
-
-/*
-
-  TASK 1
-
-  - Build a Person Constructor that takes name and age.
-  - Give persons the ability to greet by returning a string stating name and age.
-  - Give persons the ability to eat edibles.
-  - When eating an edible, it should be pushed into a "stomach" property which is an array.
-  - Give persons the ability to poop.
-  - When pooping, the stomach should empty.
-
-  TASK 2
-
-  - Build a Car constructor that takes model name and make.
-  - Give cars the ability to drive a distance.
-  - By driving a car, the distance driven should be added to an "odometer" property.
-  - Give cars the ability to crash.
-  - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
-  - Give cars the ability to be repaired.
-  - A repaired car can be driven again.
-
-  TASK 3
-
-  - Build a Baby constructor that subclasses the Person built earlier.
-  - Babies of course inherit the ability to greet, which can be strange.
-  - Babies should have the ability to play, which persons don't.
-  - By playing, a string is returned with some text of your choosing.
-
-  TASK 4
-
-  Use your imagination and come up with constructors that allow to build objects
-  With amazing and original capabilities. Build 3 small ones, or a very
-  complicated one with lots of state. Surprise us!
-
-*/
-
-
-
-
-// REFACTORED SOLUTIONS TO TASKS 1 - 4 FROM YESTERDAY 
-
-//****** */TASK 1: **********/
-// function Person (name, age) {
-//     this.name = name;
-//     this.age = age;
-//     this.stomach = [];
-//   }
-
-//   Person.prototype.greet = function(){
-//     return `Hello, my name is ${this.name}, I am ${this.age} years old`;
-//   }
-//   Person.prototype.eatEdibles = function(food){
-//    this.stomach.push(food);
-//   }
-//   Person.prototype.poop = function(){
-//     this.stomach.pop();
-//   }
 
 // TASK 1 REFACTORING STARTS FROM HERE
 class Persons {
@@ -120,35 +26,6 @@ class Persons {
         this.stomach.pop();
     }
 }
-
-// var newPerson = new Persons("Shae", 25);
-// console.log(newPerson);//Persons {name: "Shae", age: 25, stomach: []}
-// newPerson.eatEdibles("Mango");
-// console.log(newPerson.stomach);//["Mango"]
-// newPerson.poop();
-// console.log(newPerson.stomach);//[]
-
-//************ */TASK 2 **********/
-//   function Car (model, name, make) {
-//     this.carModel = model;
-//     this.carName = name;
-//     this.carMake = make;
-//     this.odometer = 0;
-//     this.canBeDriven = true;
-//   }
-
-//   Car.prototype.drive = function(distanceDriven){
-//     if(this.canBeDriven === true) this.odometer += Number(distanceDriven);
-//   }
-//   Car.prototype.crash = function(){
-//     // Make car undrive-able, as it it's just been crahsed!
-//     this.canBeDriven = false;
-//     console.log(`I crahsed ${this.odometer} miles!`);
-//   }
-//   Car.prototype.repair = function(){
-//     //restore car'r drivability.
-//     this.canBeDriven = true;
-//   }
 
 
 //TASK 2 REFACTORING STARTS FROM HERE
@@ -184,25 +61,6 @@ class Car {
 //   console.log(myCar.canBeDriven);//TRUE
 
 
-
-
-//********** */TASK 3************/
-//   function Baby(name, age, favoriteToy) {
-//     Person.call(this, name, age);
-//     this.favoriteToy = favoriteToy;
-//   }
-
-//   Baby.prototype = Object.create(Person.prototype);
-
-//   // add ability for baby's to play
-//   Baby.prototype.play = function () {
-//     return `I am playing with my ${this.favoriteToy}`;
-//   }
-
-//var sonny = new Baby('Tom', 5, 'bicycle');
-//console.log(sonny.greet());
-//console.log(sonny.play());
-
 //TASK 3 REFACTORING STARTS FROM HERE
 
 class Baby extends Persons {
@@ -225,65 +83,8 @@ class Baby extends Persons {
 
 
 //   //*********** */TASK 4***********/
-//   //first constructor function
-//   function Fruit (fruitName, fruitType, fruitRating) {
-//     this.name = fruitName;
-//     this.type = fruitType;
-//     this.rating = Number(fruitRating);
-//     this.isTasty = false;
-//   }
-
-//   Fruit.prototype.eatFruit = function(){
-//     return `${this.name} is very TASTY!`;
-//   }
-//   //var newFruit = new Fruit("banana", "berry", 30);
-//   //console.log(newFruit.eatFruit());
-
-
-
-//   //second constructor function
-//   function Students (nameOfStudent, ageOfStudent, scoreOfStudent) {
-//     this.studentName = nameOfStudent;
-//     this.studentAge = Number(ageOfStudent);
-//     this.studentScore = scoreOfStudent;
-//     this.isPromoted = false;
-//   }
-
-//   Students.prototype.writeExam = function(){
-//     if(this.studentScore > 70){
-//       this.isPromoted = true;
-//       return `Congratulations ${this.studentName}, You passed your exam`;
-//     } 
-//   }
-
-//   var student1 = new Students("Samuel", 22, 75);
-//   //console.log(student1.writeExam());
-//   //console.log(student1.isPromoted);
-
-
-//   //third constructor function
-//   function Employee(name, educationStatus, workExperience){
-//     this.employeeName = name;
-//     this.employeeEducationStatus = educationStatus;
-//     this.employeeWorkExperience = workExperience;  
-//     this.isExperienced = false;
-//   }
-
-//   Employee.prototype.getLevelOfExperien = function() {
-//     if(this.employeeWorkExperience > 0){
-//       this.isExperienced = true;
-//       return (`You have ${this.employeeWorkExperience}yr work  experience`);
-//     }
-//     return isExperienced = false;
-//   }
-//   const intern = new Employee("newGuy", "b.sc", 1);
-//   //console.log(intern);
-//   console.log(intern.getLevelOfExperien());
-
-
-
 //   /*
-  //first constructor function REFACTOR
+  //first constructor function REFACTOR 
 
   class Fruit {
       constructor(fruitName, fruitType, fruitRating){
@@ -321,21 +122,7 @@ class Baby extends Persons {
   //console.log(newStudent.writeExam());//prints out "Congratulations tunde, You passed your exam" also sets this.isPromoted to TRUE
   //console.log(newStudent);//Students {studentName: "tunde", studentAge: 30, studentScore: 79, isPromoted: true}
 
-//   third constructor function
-//   function Employee(name, educationStatus, workExperience){
-//     this.employeeName = name;
-//     this.employeeEducationStatus = educationStatus;
-//     this.employeeWorkExperience = workExperience;  
-//     this.isExperienced = false;
-//   }
 
-//   Employee.prototype.getLevelOfExperien = function() {
-//     if(this.employeeWorkExperience > 0){
-//       this.isExperienced = true;
-//       return (`You have ${this.employeeWorkExperience}yr work  experience`);
-//     }
-//     return isExperienced = false;
-//   }
 
   class Employee {
       constructor(name, educationStatus, workExperience){
